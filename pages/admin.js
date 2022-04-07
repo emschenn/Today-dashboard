@@ -5,7 +5,7 @@ import Login from "../components/Login";
 import Header from "../components/Header";
 import ProfileInfo from "../components/ProfileInfo";
 
-export default function Index() {
+export default function Admin() {
   const router = useRouter();
 
   const [isRegistered, setIsRegistered] = useState(false);
