@@ -8,6 +8,7 @@ export default function ProfileInfo({ user }) {
   const [name, setName] = useState("");
   const [line, setLine] = useState("");
   const [group, setGroup] = useState("");
+  const [identity, setIdentity] = useState("");
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const router = useRouter();
@@ -20,6 +21,8 @@ export default function ProfileInfo({ user }) {
       group,
       line,
       name,
+      identity,
+      notifyWhenViewCountsEqual: 1,
       email: user.email,
     })
       .then(() => {
@@ -58,7 +61,7 @@ export default function ProfileInfo({ user }) {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -1000 }}
       >
-        <div>
+        {/* <div>
           <p className="pb-2 text-sm text-black opacity-50">電子信箱</p>
           <Input
             focusBorderColor="#0000002d"
@@ -66,7 +69,7 @@ export default function ProfileInfo({ user }) {
             type="text"
             value={user?.email}
           ></Input>
-        </div>
+        </div> */}
         <div>
           <p className="pb-2 text-sm text-black opacity-50">姓名</p>
           <Input
@@ -88,6 +91,20 @@ export default function ProfileInfo({ user }) {
             value={line}
             onChange={(e) => setLine(e.target.value)}
           ></Input>
+        </div>
+        <div className="w-52">
+          <p className="pb-2 text-sm text-black opacity-50">身份 </p>
+          <Select
+            focusBorderColor="#0000002d"
+            placeholder="    "
+            value={identity}
+            onChange={(e) => setIdentity(e.target.value)}
+          >
+            <option value="mom">媽媽</option>
+            <option value="dad">爸爸</option>
+            <option value="daughter">兒子</option>
+            <option value="son">女兒</option>
+          </Select>
         </div>
         <div className="w-52">
           <p className="pb-2 text-sm text-black opacity-50">Group ID </p>
