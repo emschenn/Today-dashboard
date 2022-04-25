@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Input, Button, Select, useToast } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getDatabase, ref, child, get, set } from "firebase/database";
+import { getDatabase, ref, child, update, set } from "firebase/database";
 
 export default function ProfileInfo({ user }) {
   const [name, setName] = useState("");
@@ -26,20 +26,29 @@ export default function ProfileInfo({ user }) {
       email: user.email,
     })
       .then(() => {
-        toast({
-          position: "top",
-          duration: 2000,
-          render: () => (
-            <div className="w-full rounded-xl bg-[#E3DFCC] px-8 py-4 font-bold shadow-md">
-              用戶設定完成 ✔
-            </div>
-          ),
-          isClosable: true,
-          onCloseComplete: () => {
+        var member = {};
+        member[identity] = user.uid;
+        update(ref(db, `groups/${group}/members`), member)
+          .then(() => {
+            toast({
+              position: "top",
+              duration: 2000,
+              render: () => (
+                <div className="w-full rounded-xl bg-[#E3DFCC] px-8 py-4 font-bold shadow-md">
+                  用戶設定完成 ✔
+                </div>
+              ),
+              isClosable: true,
+              onCloseComplete: () => {
+                setLoading(false);
+                router.reload(window.location.pathname);
+              },
+            });
+          })
+          .catch((err) => {
+            console.log(err);
             setLoading(false);
-            router.reload(window.location.pathname);
-          },
-        });
+          });
       })
       .catch((err) => {
         console.log(err);
