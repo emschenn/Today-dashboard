@@ -23,6 +23,7 @@ export default function ProfileInfo({ user }) {
       name,
       identity,
       notifyWhenViewCountsEqual: 1,
+      enableViewedNotify: true,
       latestTimestamp: 1619679400,
       email: user.email,
     })
