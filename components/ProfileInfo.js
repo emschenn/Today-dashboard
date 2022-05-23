@@ -24,7 +24,7 @@ export default function ProfileInfo({ user }) {
       identity,
       notifyWhenViewCountsEqual: 1,
       enableViewedNotify: true,
-      latestTimestamp: 1619679400,
+      latestTimestamp: Date.now() / 1000 | 0,
       email: user.email,
     })
       .then(() => {
