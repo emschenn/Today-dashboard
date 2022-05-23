@@ -6,7 +6,7 @@ import { getDatabase, ref, child, update, set } from "firebase/database";
 
 export default function ProfileInfo({ user }) {
   const [name, setName] = useState("");
-  const [line, setLine] = useState("");
+  const [age, setAge] = useState("");
   const [group, setGroup] = useState("");
   const [identity, setIdentity] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function ProfileInfo({ user }) {
     setLoading(true);
     set(ref(db, "users/" + user.uid), {
       group,
-      line,
+      age,
       name,
       identity,
       notifyWhenViewCountsEqual: 1,
@@ -92,20 +92,32 @@ export default function ProfileInfo({ user }) {
             onChange={(e) => setName(e.target.value)}
           ></Input>
         </div>
-        <div>
-          <p className="pb-2 text-sm text-black opacity-50">LINE </p>
-          <Input
-            focusBorderColor="#0000002d"
+         <div className="w-52">
+          <p className="pb-2 text-sm text-black opacity-50">年紀 </p>
+          <Select
             isDisabled={loading}
-            type="text"
-            placeholder="電話 or ID"
-            value={line}
-            onChange={(e) => setLine(e.target.value)}
-          ></Input>
+            focusBorderColor="#0000002d"
+            placeholder="    "
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          >
+            <option value="16-20">16-20</option>
+            <option value="21-25">21-25</option>
+            <option value="26-30">26-30</option>
+            <option value="31-35">31-35</option>
+            <option value="36-40">36-40</option>
+            <option value="41-45">41-45</option>
+            <option value="46-50">46-50</option>
+            <option value="51-55">51-55</option>
+            <option value="56-60">56-60</option>
+            <option value="61-65">61-65</option>
+            <option value="66-70">66-70</option>
+          </Select>
         </div>
         <div className="w-52">
           <p className="pb-2 text-sm text-black opacity-50">身份 </p>
           <Select
+            isDisabled={loading}
             focusBorderColor="#0000002d"
             placeholder="    "
             value={identity}
@@ -120,6 +132,7 @@ export default function ProfileInfo({ user }) {
         <div className="w-52">
           <p className="pb-2 text-sm text-black opacity-50">Group ID </p>
           <Select
+            isDisabled={loading}
             focusBorderColor="#0000002d"
             placeholder="    "
             value={group}
