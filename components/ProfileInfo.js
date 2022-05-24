@@ -22,7 +22,7 @@ export default function ProfileInfo({ user }) {
       age,
       name,
       identity,
-      notifyWhenViewCountsEqual: 1,
+      notifyWhenViewCountsEqual: 5,
       enableViewedNotify: true,
       latestTimestamp: Date.now() / 1000 | 0,
       email: user.email,
@@ -92,7 +92,7 @@ export default function ProfileInfo({ user }) {
             onChange={(e) => setName(e.target.value)}
           ></Input>
         </div>
-         <div className="w-52">
+        <div className="w-52">
           <p className="pb-2 text-sm text-black opacity-50">年紀 </p>
           <Select
             isDisabled={loading}
