@@ -24,7 +24,8 @@ export default function ProfileInfo({ user }) {
       identity,
       notifyWhenViewCountsEqual: 5,
       enableViewedNotify: true,
-      latestTimestamp: Date.now() / 1000 | 0,
+      receiveScheduledNotification: true,
+      latestTimestamp: (Date.now() / 1000 | 0) + 864000,
       email: user.email,
     })
       .then(() => {
@@ -138,9 +139,12 @@ export default function ProfileInfo({ user }) {
             value={group}
             onChange={(e) => setGroup(e.target.value)}
           >
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="group1">Group 1</option>
+            <option value="group2">Group 2</option>
+            <option value="group3">Group 3</option>
+            <option value="group4">Group 4</option>
+            <option value="group5">Group 5</option>
+            <option value="group6">Group 6</option>
           </Select>
         </div>
         <div className="pt-8">
