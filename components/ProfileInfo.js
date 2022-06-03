@@ -126,8 +126,8 @@ export default function ProfileInfo({ user }) {
           >
             <option value="mom">媽媽</option>
             <option value="dad">爸爸</option>
-            <option value="daughter">兒子</option>
-            <option value="son">女兒</option>
+            <option value="daughter">女兒</option>
+            <option value="son">兒子</option>
           </Select>
         </div>
         <div className="w-52">
