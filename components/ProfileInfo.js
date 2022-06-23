@@ -25,7 +25,7 @@ export default function ProfileInfo({ user }) {
       notifyWhenViewCountsEqual: 5,
       enableViewedNotify: true,
       receiveScheduledNotification: true,
-      latestTimestamp: (Date.now() / 1000 | 0) + 864000,
+      latestTimestamp: ((Date.now() / 1000) | 0) + 864000,
       email: user.email,
     })
       .then(() => {
@@ -44,7 +44,7 @@ export default function ProfileInfo({ user }) {
               isClosable: true,
               onCloseComplete: () => {
                 setLoading(false);
-                router.reload(window.location.pathname);
+                router.push("/");
               },
             });
           })

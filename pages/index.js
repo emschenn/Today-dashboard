@@ -1,38 +1,23 @@
-import { useEffect, useState } from "react";
-
-import Login from "../components/Login";
-import ProfileInfo from "../components/ProfileInfo";
+import Link from "next/link";
+import Head from "next/head";
+import Image from "next/image";
+import { Button } from "@chakra-ui/react";
 
 export default function Index() {
-
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [user, setUser] = useState();
-
   return (
     <>
-      <main className="flex h-screen w-screen flex-col items-center  overscroll-none  ">
-        <div className="flex items-center space-x-2  py-20 text-sm font-medium">
-          <p
-            className={`${
-              !isRegistered ? "bg-primary text-white" : ""
-            } rounded-full px-3 py-1`}
-          >
-            註冊帳戶
-          </p>
-          <span> → </span>
-          <p
-            className={`${
-              isRegistered ? "bg-primary text-white" : ""
-            } rounded-full px-3 py-1`}
-          >
-            登記個人資料
-          </p>
-        </div>
-        {isRegistered ? (
-          <ProfileInfo user={user} />
-        ) : (
-          <Login doneRegister={() => setIsRegistered(true)} setUser={setUser} />
-        )}
+      <Head>
+        <title>Admin</title>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <main className="flex h-screen w-screen flex-col items-center justify-center first-line:overscroll-none">
+        <Image src={"/favicon.png"} alt="main" width={130} height={130} />
+        <Link href="/signup" passHref>
+          <Button className=" mb-6 mt-4 ">Add New User </Button>
+        </Link>
+        <Link href="/dashboard" passHref>
+          <Button>Go Dashboard</Button>
+        </Link>
       </main>
     </>
   );
